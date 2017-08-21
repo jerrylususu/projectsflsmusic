@@ -7,3 +7,5 @@ Project SFLS ♫
 
 后端 Python + Flask
 前端 Bootstrap
+
+使用指南 https://mubu.com/doc/dhQ8BnHnj
