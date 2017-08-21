@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    歌曲信息修改
+{% endblock %}
+
+
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <form role="form" class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <input autocomplete="off" class="form-control" name="0id" placeholder="歌曲id" type="text" value="{{id}}" readOnly="true" required/>
+                    </div>
+                    <div class="form-group">
+                        <input autocomplete="off" class="form-control" name="0id" placeholder="来源网站" type="text" value="{{src}}" readOnly="true" required/>
+                    </div>
+                    <div class="form-group">
+                        <input autocomplete="off" class="form-control" name="0id" placeholder="歌曲外部id" type="text" value="{{srcid}}" readOnly="true" required/>
+                    </div>
+                    <div class="form-group">
+                        <input autocomplete="off" class="form-control" name="0id" placeholder="语种/分类" type="text" value="{{lang}}" readOnly="true" required/>
+                    </div>
+                    <div class="form-group">
+                        <input autocomplete="off" class="form-control" name="0id" placeholder="歌曲名" type="text" value="{{name}}" readOnly="true" required/>
+                    </div>
+                    <div class="form-group">
+                        <input autocomplete="off" class="form-control" name="0id" placeholder="翻译名" type="text" value="{{trname}}" readOnly="true" required/>
+                    </div>
+                    <div class="form-group">
+                        <input autocomplete="off" class="form-control" name="0id" placeholder="备注" type="text" value="{{note}}" readOnly="true" required/>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-7">
+            <form action="{{ url_for('songchange') }}" method="post" data-toggle="validator" role="form" class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="sid" class="col-lg-2 control-label">歌曲id</label>
+                        <div class="col-lg-10">
+                        <input autocomplete="off" autofocus class="form-control" name="id" placeholder="歌曲id" type="text" value={{id}} readOnly="true" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="srcsite" class="col-lg-2 control-label">来源网站</label>
+                        <div class="col-lg-10">
+                        <select name="srcsite" class="form-control" required>
+                                <option value="netease">网易云</option>
+                                <option value="qq">QQ</option>
+                                <option value="xiami">虾米</option>
+                                <option value="bilibili">Bilibli</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="songid" class="col-lg-2 control-label">歌曲外部id</label>
+                        <div class="col-lg-10">
+                        <input autocomplete="off" autofocus class="form-control" name="songid" placeholder="歌曲外部id" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lang" class="col-lg-2 control-label">语种/分类(不可修改)</label>
+                        <div class="col-lg-10">
+                        <input autocomplete="off" class="form-control" name="lang" placeholder="语种/分类" type="text" value="{{lang}}" readOnly="true" required/>
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label for="name" class="col-lg-2 control-label">歌曲名</label>
+                        <div class="col-lg-10">
+                        <input autocomplete="off" autofocus class="form-control" name="name" placeholder="歌曲名" type="text" required/>
+                        </div>            
+                    </div>
+                    <div class="form-group">
+                        <label for="trname" class="col-lg-2 control-label">翻译名</label>
+                        <div class="col-lg-10">
+                        <input autocomplete="off" autofocus class="form-control" name="trname" placeholder="翻译名(如有)" type="text"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="note" class="col-lg-2 control-label">备注</label>
+                        <div class="col-lg-10">
+                        <input autocomplete="off" autofocus class="form-control" name="note" placeholder="(出处/原视频···)" type="text"/>
+                        </div>
+                    </div>
+                    <div class="form-group" style ="display:none;">
+                        <input autocomplete="off" class="form-control" name="stage" value="infodone" type="text" required/>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default btn-block" type="submit">提交修改</button>
+                    </div>
+                </fieldset>
+            </form>
+            <p>
+                如何获取歌曲外部id？<br>
+                网易云音乐(8位数字或9位数字)：http://music.163.com/#/song?id=<font color="#FF0000">XXXXXXXX</font>&userid=XXXXXXXX<br>
+                QQ音乐(9位数字或14位数字+字符)：https://y.qq.com/n/yqq/song/<font color="#FF0000">XXXXXXXXX</font>_num.html#<br>
+                虾米音乐(10位数字或11位数字+字符)：http://www.xiami.com/song/<font color="#FF0000">XXXXXXXXXX</font><br>
+                bilibili(av号)：https://www.bilibili.com/video/<font color="#FF0000">avXXXXXXXXXX</font><br>
+                </p>
+        </div>
+</div>
+{% endblock %}

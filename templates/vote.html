@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='scrollfix.js') }}"></script>
+<script type="text/javascript">
+$(function(){
+var fixtop = $("#poll")
+fixtop.scrollFix({distanceTop:20}); //第二种
+})
+</script>
+
+{% endblock %}
+
+{% block title %}
+    投票
+{% endblock %}
+
+{% block main %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+		    <p>本段时间内曲库歌曲总数:{{count}}</p>
+		    <p>投票：填入歌曲id至右方时段，无需全填，点击投票即可。</p>
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>语种/分类</th>
+                    <th>歌曲id</th>
+                    <th>歌曲名 - 翻译名 - 备注</th>
+                    <th>试听</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for song in songs %}
+                    <tr>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+		</div><!-- /.col-lg-10 -->
+		
+		<div class="col-md-2 col-centered" id="poll">
+		    <form action="{{ url_for('vote') }}" method="post" data-toggle="validator" role="form">
+        <fieldset>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="am1" placeholder="早上起床" type="number"/>
+            </div>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="am2" placeholder="早上赶人" type="number"/>
+            </div>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="noon1" placeholder="中午睡前" type="number"/>
+            </div>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="noon2" placeholder="中午起床" type="number"/>
+            </div>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="noon3" placeholder="中午赶人" type="number"/>
+            </div>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="pm1" placeholder="下午放学后" type="number"/>
+            </div>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="pm2" placeholder="下午赶人" type="number"/>
+            </div>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="n" placeholder="晚上睡前" type="number"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">投票</button>
+            </div>
+        </fieldset>
+		</div><!-- /.col-lg-2 -->
+	</div><!-- /.row -->
+</div>
+    
+    
+{% endblock %}

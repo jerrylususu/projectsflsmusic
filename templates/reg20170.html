@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    注册
+{% endblock %}
+
+
+
+{% block main %}
+    <form action="{{ url_for('reg2017') }}" method="post" data-toggle="validator" role="form">
+        <fieldset>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="studentno" placeholder="请输入学号" type="number" min="201410101" max="201712150" required/>
+            </div>
+            <div class="form-group" style ="display:none;">
+                <input autocomplete="off" class="form-control" name="stage" value="getid" type="text" required/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">确认</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    登入
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('login') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="studentno" placeholder="学号" type="text"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="password" placeholder="密码" type="password"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">登入</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

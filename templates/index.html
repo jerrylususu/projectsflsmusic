@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block main %}
+    <h4>Welcome!<br>Version RC1 testing!<br>release <strong>20170820 2044</strong> GMT+8</h4>
+    <h4>请注意：为保证开发服务器与生产服务器同步，此测试为删档测试，用户数据<strong>不会被保留！</strong></h4>
+    <a class="btn btn-info" href={{ url_for("about") }}>更新记录</a>
+    <a class="btn btn-default" href="https://wj.qq.com/s/1506172/2469/" target="_blank">提交 BUG</a>
+    <h4>当前状态：<strong>{{status}}</strong></h4>
+    {% if a %}
+    <table class="table table-hover">
+        <caption>当前周数：{{week}}</caption>
+        <thead>
+            <tr>
+                <th>分类/语种</th>
+                <th>已上传数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>中文</td>
+                <td>{{chn}}/{{perlang}}</td>
+            </tr>
+            <tr>
+                <td>英文</td>
+                <td>{{eng}}/{{perlang}}</td>
+            </tr>
+            <tr>
+                <td>日文</td>
+                <td>{{jpn}}/{{perlang}}</td>
+            </tr>
+            <tr>
+                <td>电音</td>
+                <td>{{elect}}/{{perlang}}</td>
+            </tr>
+            <tr>
+                <td>纯音乐</td>
+                <td>{{pure}}/{{perlang}}</td>
+            </tr>
+            <tr>
+                <td>其它</td>
+                <td>{{other}}/{{perlang}}</td>
+            </tr>
+            <tr class="info">
+                <td>本帐户</td>
+                <td>{{user}}/{{peruser}}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    后台
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <form role="form" class="form-horizontal">
+                <fieldset>
+                    
+                    <div class="form-group">
+                        
+                            <input autocomplete="off" class="form-control" name="weeknow" value="{{w}}" type="text" disabled required/>
+                        
+                    </div>
+                    
+                        <div class="form-group">
+                
+                
+                    <input autocomplete="off" class="form-control" name="statusnow" value="{{sn}}" type="text" disabled required/>
+                </div>
+                
+                <div class="form-group">
+                
+                
+                    <input autocomplete="off" class="form-control" name="linknow" value="{{d}}" type="text" disabled required/>
+                </div>
+                
+            </fieldset>
+            </form>
+        </div>
+        <div class="col-md-7">
+            <form action="{{ url_for('houtai') }}" method="post" data-toggle="validator" role="form" class="form-horizontal">  
+            <fieldset>
+            <div class="form-group">
+                <label for="weeknow" class="col-lg-2 control-label">修改周数</label>
+                <div class="col-lg-10">
+                    <input autocomplete="off" class="form-control" name="week1" type="number" min="1" value="{{w}}" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="status1" class="col-lg-2 control-label">修改状态</label>
+                <div class="col-lg-10">
+                <select name="status1" class="form-control" required>
+                        <option value="idle">空闲</option>
+                        <option value="submit">歌曲提交</option>
+                        <option value="vote">投票</option>
+                        <option value="fullopen">全开</option>
+                        <option value="maintain">维护</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="data" class="col-lg-2 control-label">修改外部数据</label>
+                <div class="col-lg-10">
+                    <input autocomplete="off" class="form-control" name="data1" value="{{d}}" type="text" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="clearsong" class="col-lg-2 control-label">清空歌曲库</label>
+                <div class="col-lg-10">
+                    <input autocomplete="off" class="form-control" name="clearsong" placeholder="请输入ClearSongDB以完成此命令" type="text"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="clearvote" class="col-lg-2 control-label">清空投票库</label>
+                <div class="col-lg-10">
+                    <input autocomplete="off" class="form-control" name="clearvote" placeholder="请输入ClearVoteDB以完成此命令" type="text"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="resetuser" class="col-lg-2 control-label">重置用户密码</label>
+                <div class="col-lg-10">
+                    <input autocomplete="off" class="form-control" name="userid" placeholder="学号" type="number"/>
+                </div>
+            </div>
+            <div class="form-group" style ="display:none;">
+                <input autocomplete="off" class="form-control" name="stage" value="do" type="text" required/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">提交更改</button>
+            </div>
+        </fieldset>
+    </form>
+    </div>
+    </div>
+    </div>
+{% endblock %}

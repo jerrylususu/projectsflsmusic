@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    账户
+{% endblock %}
+
+{% block main %}
+    <div>
+        <table class="table table-hover">
+            <caption>我提交的歌曲</caption>
+            <thead>
+                <tr>
+                    <th>语种/分类</th>
+                    <th>歌曲id</th>
+                    <th>歌曲名 - 翻译名 - 备注</th>
+                    <th>试听</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for song in songs %}
+                    <tr>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a class="btn btn-default" href="{{ url_for('songchange') }}" target="_blank">歌曲信息修改</a>
+    </div>
+    <div>
+        <table class="table table-hover">
+            <caption>我本次的投票</caption>
+            <thead>
+                <tr>
+                    <th>时间段</th>
+                    <th>语种/分类</th>
+                    <th>歌曲id</th>
+                    <th>歌曲名 - 翻译名 - 备注</th>
+                    <th>试听</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for song in am1 %}
+                    <tr>
+                        <td>早上起床</td>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% for song in am2 %}
+                    <tr>
+                        <td>早上赶人</td>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% for song in noon1 %}
+                    <tr>
+                        <td>中午睡前</td>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% for song in noon2 %}
+                    <tr>
+                        <td>中午起床</td>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% for song in noon3 %}
+                    <tr>
+                        <td>中午赶人</td>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% for song in pm1 %}
+                    <tr>
+                        <td>下午放学后</td>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% for song in pm2 %}
+                    <tr>
+                        <td>下午赶人</td>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% for song in n %}
+                    <tr>
+                        <td>晚上睡前</td>
+                        <td>{{ song["lang"] }}</td>
+                        <td>{{ song["id"] }}</td>
+                        <td>{{ song["name"] }} - {{ song["trname"] }} - {{ song["note"] }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-default" href="{{ song["urlback"] }}" target="_blank">试听</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div>
+        <a class="btn btn-default" href="{{ url_for('passset') }}">重设密码</a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    注册
+{% endblock %}
+
+
+
+{% block main %}
+    <a class="btn btn-success" href="{{ url_for('reg2017') }}">2017级毕业生注册特别通道</a>
+    <p><br></p>
+    <form action="{{ url_for('register') }}" method="post" data-toggle="validator" role="form">
+        <fieldset>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" autofocus class="form-control" name="studentno" placeholder="学号" type="number" min="201410101" max="201712150" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input class="form-control" name="password" placeholder="密码" type="password" id="password" required pattern="^[_A-z0-9]{1,}$"/>
+            </div>
+            <div class="form-group has-feedback">
+                <input class="form-control" name="password2" placeholder="确认密码" type="password" required data-match="#password" data-match-error="密码不匹配"/>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">注册</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+        <meta charset="utf-8"/>
+        <meta content="initial-scale=1, width=device-width" name="viewport"/>
+        
+        <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+        
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+        
+        <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <!-- https://github.com/corejavascript/typeahead.js/blob/master/doc/jquery_typeahead.md -->
+        <script src="https://cdn.bootcss.com/typeahead.js/0.11.1/typeahead.jquery.js"></script>
+
+        <!-- http://handlebarsjs.com/ -->
+        <script src="https://cdn.bootcss.com/handlebars.js/4.0.5/handlebars.min.js"></script>
+        
+        <!-- https://github.com/1000hz/bootstrap-validator -->
+        <script src="https://cdn.bootcss.com/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
+        
+        <!-- http://stewartjpark.com/Flask-JSGlue/ -->
+        {{ JSGlue.include() }}
+        
+        {% block head %}{% endblock %}
+        
+        <title>{% block title %}{% endblock %} - Project SFLS ♫</title>
+    </head>
+    
+    <body>
+        <div class="container">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ url_for('index') }}"> Project SFLS ♫</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        {% if session.userid %}
+                            <ul class="nav navbar-nav">
+                                <li><a href="{{ url_for('submit') }}">提交歌曲</a></li>
+                                <li><a href="{{ url_for('vote') }}">投票</a></li>
+                                <li><a href="{{ url_for('data') }}">数据</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                {% with userid = session["userid"] %}
+                                <li><a href="{{ url_for('userinfo') }}">账号:{{userid}}</a></li>
+                                {% endwith %}
+                                <li><a href="{{ url_for('logout') }}">登出</a></li>
+                                <li><a href="{{ url_for('about') }}">关于</a></li>
+                            </ul>
+                        {% else %}
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="{{ url_for('register') }}">注册</a></li>
+                                <li><a href="{{ url_for('login') }}">登入</a></li>
+                                <li><a href="{{ url_for('about') }}">关于</a></li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+            
+            <main>
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            {% for message in messages%}
+                <div class="alert alert-{{ message[0] }}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message[1] }}
+                </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            
+            {% if error %}
+                    <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert">
+                            &times;
+                        </a>
+                        <p class=error><strong>错误：</strong>{{ error }}
+                    </div>
+                {% endif %}
+                
+                {% if success %}
+                    <div class="alert alert-success">
+                        <a href="#" class="close" data-dismiss="alert">
+                            &times;
+                        </a>
+                        <p class=success><strong>成功：</strong>{{ success }}
+                    </div>
+                {% endif %}
+                
+                {% if info %}
+                    <div class="alert alert-info">
+                        <a href="#" class="close" data-dismiss="alert">
+                            &times;
+                        </a>
+                        <p class=success><strong>信息：</strong>{{ info }}
+                    </div>
+                {% endif %}
+                
+                {% block main %}
+                {% endblock %}
+            </main>
+            
+        </div>
+    </body>
+    
+</html>

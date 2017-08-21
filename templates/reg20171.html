@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    注册
+{% endblock %}
+
+
+
+{% block main %}
+    <form action="{{ url_for('reg2017') }}" method="post" data-toggle="validator" role="form">
+        <fieldset>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" class="form-control" name="confirmno" type="text" value="学号：{{stuno}}" readonly="readonly"/>
+            </div>
+            <div class="form-group" style ="display:none;">
+                <input autocomplete="off" class="form-control"id="no1" name="no1" value="{{stuno}}" type="text" required/>
+            </div>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" class="form-control" name="confirmname" type="text" value="姓名：{{stuname}}" readonly="readonly"/>
+            </div>
+            <div class="form-group has-feedback">
+                <input autocomplete="off" class="form-control" autofocus name="no2" placeholder="再次输入学号以确认" type="number" min="201410101" max="201712150" required data-match="#no1" data-match-error="学号不匹配" required/>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group" style ="display:none;">
+                <input autocomplete="off" class="form-control" name="stage" value="confirm" type="text" required/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">确认</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
